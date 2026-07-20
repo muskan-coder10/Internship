@@ -1,0 +1,105 @@
+.liked-page {
+  flex: 1;
+  padding: 15px 25px;
+  max-width: 800px;
+}
+
+.liked-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 14px;
+}
+
+.liked-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.liked-count {
+  font-size: 14px;
+  color: #777;
+  margin: 0;
+}
+
+.liked-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.liked-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+  padding: 8px 6px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.liked-card:hover {
+  background: #f5f5f5;
+}
+
+.liked-thumbnail {
+  width: 168px;
+  height: 94px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.liked-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.liked-video-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.liked-channel {
+  font-size: 13px;
+  color: #555;
+  margin: 4px 0 2px 0;
+}
+
+.liked-meta {
+  font-size: 12px;
+  color: #888;
+  margin: 0;
+}
+
+.unlike-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+}
+
+.unlike-btn:hover {
+  background: #e0e0e0;
+}
+
+.empty-message {
+  color: #888;
+  font-size: 14px;
+  padding: 20px 6px;
+}
+
+@media (max-width: 600px) {
+  .liked-thumbnail {
+    width: 120px;
+    height: 68px;
+  }
+}

@@ -1,0 +1,107 @@
+.otp-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 56px);
+  padding: 20px;
+  background: var(--bg);
+}
+
+.otp-card {
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px 36px;
+  text-align: center;
+  background: var(--card-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.otp-icon {
+  font-size: 52px;
+}
+
+.otp-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text);
+}
+
+.otp-subtitle {
+  font-size: 14px;
+  color: #888;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.otp-error {
+  color: #d93025;
+  font-size: 13px;
+  margin: 0;
+  background: #fce8e6;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.otp-input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 22px;
+  text-align: center;
+  letter-spacing: 8px;
+  font-weight: 700;
+  background: var(--input-bg);
+  color: var(--text);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.otp-input:focus {
+  border-color: #065fd4;
+}
+
+.otp-btn {
+  width: 100%;
+  background: #065fd4;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.otp-btn:hover {
+  background: #0552b5;
+}
+
+.otp-btn:disabled {
+  background: #a0c2f4;
+  cursor: not-allowed;
+}
+
+.otp-note {
+  font-size: 12px;
+  color: #888;
+  margin: 0;
+}
+
+.otp-back {
+  background: none;
+  border: none;
+  color: #065fd4;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.otp-back:hover {
+  text-decoration: underline;
+}

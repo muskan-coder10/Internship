@@ -1,0 +1,33 @@
+.main-content {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  height: calc(100vh - 66px);
+  overflow: hidden; /* prevents whole-page scroll; each child scrolls on its own */
+}
+
+.content-area {
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+  min-width: 0;
+}
+
+.video-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+html, body {
+  overflow: hidden; 
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}

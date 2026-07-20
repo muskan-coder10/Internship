@@ -1,0 +1,142 @@
+.pricing-page {
+  flex: 1;
+  padding: 30px 25px;
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.pricing-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.pricing-header p {
+  font-size: 16px;
+  color: #555;
+  margin: 0;
+}
+
+.current-plan {
+  margin-top: 10px !important;
+  font-size: 14px;
+  color: #333;
+}
+
+.pricing-error {
+  color: #d93025;
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pricing-card {
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-card.current {
+  border: 2px solid #065fd4;
+  box-shadow: 0 4px 16px rgba(6, 95, 212, 0.2);
+}
+
+.pricing-card-header {
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.pricing-card-header h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.pricing-price {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.pricing-card-body {
+  padding: 20px;
+}
+
+.pricing-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pricing-features li {
+  font-size: 14px;
+  color: #333;
+}
+
+.pricing-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.upgrade-btn {
+  background: #065fd4;
+  color: white;
+}
+
+.upgrade-btn:hover {
+  background: #0552b5;
+}
+
+.upgrade-btn:disabled {
+  background: #a0c2f4;
+  cursor: not-allowed;
+}
+
+.current-btn {
+  background: #e8f0fe;
+  color: #065fd4;
+  cursor: not-allowed;
+}
+
+.free-btn {
+  background: #f2f2f2;
+  color: #555;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}

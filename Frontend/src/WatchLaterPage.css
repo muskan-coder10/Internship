@@ -1,0 +1,193 @@
+.watch-party-page {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  flex: 1;
+  height: calc(100vh - 56px);
+  overflow: hidden;
+}
+
+.watch-party-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.watch-party-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.watch-party-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.leave-btn {
+  background: #d93025;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.leave-btn:hover {
+  background: #b52a1c;
+}
+
+.watch-party-player {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: black;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.watch-party-info {
+  font-size: 14px;
+  color: #555;
+}
+
+.watch-party-sidebar {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.participants-section h3,
+.chat-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.participants-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.participant-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.participant-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ff0000;
+  color: white;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.chat-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.chat-message {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.chat-username {
+  font-weight: 600;
+  color: #065fd4;
+}
+
+.chat-text {
+  color: #0f0f0f;
+}
+
+.chat-time {
+  font-size: 11px;
+  color: #aaa;
+  margin-left: 6px;
+}
+
+.chat-input-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 18px;
+  font-size: 13px;
+  outline: none;
+}
+
+.chat-input:focus {
+  border-color: #065fd4;
+}
+
+.chat-send-btn {
+  background: #065fd4;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 18px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chat-send-btn:hover {
+  background: #0552b5;
+}
+
+.watch-party-error,
+.watch-party-loading {
+  flex: 1;
+  padding: 40px;
+  text-align: center;
+  color: #888;
+}
+
+@media (max-width: 900px) {
+  .watch-party-page {
+    flex-direction: column;
+    height: auto;
+    overflow: auto;
+  }
+
+  .watch-party-sidebar {
+    width: 100%;
+  }
+}
