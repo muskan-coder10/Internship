@@ -95,3 +95,27 @@
   font-size: 13px;
   margin: 0;
 }
+
+
+.upload-mode-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.mode-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f2f2f2;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.mode-btn.active {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
