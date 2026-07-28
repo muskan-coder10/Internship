@@ -136,13 +136,27 @@ function VideoPage() {
     }
   };
 
-  // NEW: real subscribe/unsubscribe — calls backend, updates count from
+  // FIXED: real subscribe/unsubscribe — calls backend, updates count from
   // the server's response (source of truth), not a local guess.
+  // Added a guard for video.channel being null/undefined so the
+  // subscribe click never silently crashes before the request is sent.
   const handleSubscribeToggle = async () => {
     if (!user) {
       alert("Please log in to subscribe.");
       return;
     }
+
+    // GUARD: some videos may have a broken/missing channel reference
+    // (e.g. the uploading account was deleted, or channel was never set).
+    // Without this check, video.channel._id below throws a silent
+    // ReferenceError/TypeError before any network request is made,
+    // which is what was causing "Failed to update subscription" with
+    // nothing showing up in the Network tab.
+    if (!video.channel || !video.channel._id) {
+      alert("Unable to subscribe — channel information is unavailable for this video.");
+      return;
+    }
+
     if (subscribeLoading) return;
 
     setSubscribeLoading(true);
@@ -265,13 +279,19 @@ function VideoPage() {
                 {subscriberCount} subscribers
               </p>
             </div>
-            <button
-              className={`subscribe-btn ${subscribed ? "subscribed" : ""}`}
-              onClick={handleSubscribeToggle}
-              disabled={subscribeLoading}
-            >
-              {subscribed ? "Subscribed" : "Subscribe"}
-            </button>
+
+            {/* Only render the button if this video actually has a valid
+                channel reference — avoids showing a button that can
+                never succeed. */}
+            {video.channel?._id && (
+              <button
+                className={`subscribe-btn ${subscribed ? "subscribed" : ""}`}
+                onClick={handleSubscribeToggle}
+                disabled={subscribeLoading}
+              >
+                {subscribed ? "Subscribed" : "Subscribe"}
+              </button>
+            )}
           </div>
 
           <div className="video-actions">
