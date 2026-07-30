@@ -60,7 +60,7 @@
   justify-content: center;
   max-width: 700px;
   margin: 0 24px;
-  min-width: 0; /* CRITICAL: allows this flex item to shrink below content size instead of forcing overflow */
+  min-width: 0; 
 }
 
 .search-input {
@@ -78,7 +78,7 @@
 .search-input-wrapper {
   position: relative;
   flex: 1;
-  min-width: 0; /* CRITICAL: same fix, lets the input actually shrink and stay visible */
+  min-width: 0; 
   display: flex;
 }
 
@@ -123,7 +123,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  flex-shrink: 0; /* keeps the search icon button from getting squished */
+  flex-shrink: 0; 
 }
 
 .search-btn:hover {
@@ -305,7 +305,7 @@
   top: 48px;
   right: 0;
   width: 280px;
-  max-width: 90vw; /* prevents dropdown from overflowing off-screen on small phones */
+  max-width: 90vw; 
   max-height: 320px;
   overflow-y: auto;
   background: var(--navbar-bg);
@@ -351,10 +351,7 @@
   }
 }
 
-/* Phones: this is the range that was breaking before.
-   Strategy: hide anything non-essential (logo text, username,
-   pricing label text) and keep the search bar as the priority
-   element so it always has visible room to render properly. */
+
 @media (max-width: 600px) {
   .navbar {
     padding: 0 8px;
@@ -362,7 +359,7 @@
   }
 
   .youtube-logo {
-    display: none; /* keep just the red play icon, like the YouTube app does on narrow screens */
+    display: none; 
   }
 
   .navbar-center {
@@ -379,7 +376,7 @@
   }
 
   .navbar-username {
-    display: none; /* no room for this on a phone navbar */
+    display: none; 
   }
 
   .pricing-link {
@@ -397,7 +394,7 @@
 /* Very small phones */
 @media (max-width: 380px) {
   .create-btn {
-    display: none; /* upload/create action can live in the sidebar menu instead on tiny screens */
+    display: none; 
   }
 
   .pricing-link span {

@@ -20,7 +20,7 @@
 }
 
 .category-bar::-webkit-scrollbar {
-  display: none; /* hides scrollbar on Chrome/Safari, like the real app */
+  display: none; 
 }
 
 .category-btn {
@@ -85,8 +85,7 @@
   margin-top: 10px;
 }
 
-/* Circular channel avatar next to the title, matching the real
-   YouTube app card layout instead of just plain stacked text. */
+
 .video-card-avatar {
   width: 36px;
   height: 36px;
@@ -111,7 +110,7 @@
 .video-info-text {
   display: flex;
   flex-direction: column;
-  min-width: 0; /* lets long titles truncate instead of overflowing */
+  min-width: 0; 
 }
 
 .video-title {
@@ -144,8 +143,7 @@
   }
 }
 
-/* Phones: single column, full-width thumbnails, tighter spacing —
-   this mirrors how the real YouTube app lays out its feed. */
+
 @media (max-width: 600px) {
   .category-bar {
     padding: 10px 12px;
@@ -155,11 +153,11 @@
   .video-grid {
     grid-template-columns: 1fr;
     gap: 20px;
-    padding: 0 0 20px 0; /* full-bleed thumbnails, no side padding, like the app */
+    padding: 0 0 20px 0;
   }
 
   .video-thumbnail {
-    border-radius: 0; /* full-bleed edge-to-edge look on mobile */
+    border-radius: 0; 
   }
 
   .video-info {

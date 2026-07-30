@@ -1,4 +1,7 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, NavLink, useNavigate } from "react-router-dom";
+import { FaHome, FaUserCircle } from "react-icons/fa";
+import { SiYoutubeshorts } from "react-icons/si";
+import { MdAddCircle, MdSubscriptions } from "react-icons/md";
 import Navbar from "./Navbar";
 import "./Navbar.css";
 import "./App.css"; 
@@ -21,8 +24,59 @@ import YouTubeWatchPage from "./YouTubeWatchPage";
 import OTPPage from "./OTPPage";
 import ComingSoon from "./ComingSoon";
 import { SidebarProvider } from "./context/SidebarProvider.jsx";
-import { NotificationProvider } from "./context/NotificationProvider.jsx"; 
+import { NotificationProvider } from "./context/NotificationProvider.jsx";
+import { useAuth } from "./AuthContext.js";
 
+// NEW: mobile bottom tab bar, defined right here instead of a separate
+// file — only visible on mobile via CSS (see .bottom-nav in App.css).
+function BottomNav() {
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
+  return (
+    <nav className="bottom-nav">
+      <NavLink
+        to="/"
+        end
+        className={({ isActive }) => `bottom-nav-item ${isActive ? "active" : ""}`}
+      >
+        <FaHome />
+        <span>Home</span>
+      </NavLink>
+
+      <NavLink
+        to="/shorts"
+        className={({ isActive }) => `bottom-nav-item ${isActive ? "active" : ""}`}
+      >
+        <SiYoutubeshorts />
+        <span>Shorts</span>
+      </NavLink>
+
+      <button
+        className="bottom-nav-item bottom-nav-create"
+        onClick={() => navigate("/upload")}
+      >
+        <MdAddCircle />
+      </button>
+
+      <NavLink
+        to="/subscriptions"
+        className={({ isActive }) => `bottom-nav-item ${isActive ? "active" : ""}`}
+      >
+        <MdSubscriptions />
+        <span>Subscriptions</span>
+      </NavLink>
+
+      <NavLink
+        to={user ? `/channel/${user.username}` : "/login"}
+        className={({ isActive }) => `bottom-nav-item ${isActive ? "active" : ""}`}
+      >
+        <FaUserCircle />
+        <span>{user ? "You" : "Login"}</span>
+      </NavLink>
+    </nav>
+  );
+}
 
 function App() {
   return (
@@ -55,6 +109,8 @@ function App() {
               </Routes>
             </div>
           </div>
+          {/* Bottom tab bar — only visible on mobile via CSS */}
+          <BottomNav />
         </BrowserRouter>
       </SidebarProvider>
     </NotificationProvider>

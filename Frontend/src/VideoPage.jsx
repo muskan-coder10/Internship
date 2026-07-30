@@ -8,8 +8,8 @@ import {
   getRemainingDownloads,
   toggleSubscribe, // NEW
 } from "./api";
-import { useAuth } from "./AuthContext.js"; // NEW: need current user id to check subscribed status
-import { useNotifications } from "./context/NotificationContext.js"; // NEW
+import { useAuth } from "./AuthContext.js"; 
+import { useNotifications } from "./context/NotificationContext.js"; 
 import VideoPlayer from "./VideoPlayer";
 import CommentSection from "./CommentSection";
 import "./VideoPage.css";
@@ -48,9 +48,7 @@ function VideoPage() {
         setLikes(res.data.likes || 0);
         setDislikes(res.data.dislikes || 0); // NEW
 
-        // NEW: derive real subscribed state + count from the channel's
-        // subscribers array (now an array of user IDs on the backend),
-        // instead of always starting from false/0.
+      
         const channelSubscribers = res.data.channel?.subscribers || [];
         setSubscriberCount(channelSubscribers.length);
         if (user) {
@@ -104,8 +102,7 @@ function VideoPage() {
     );
   };
 
-  // FIX: like and dislike are now mutually exclusive —
-  // liking removes an existing dislike, and vice versa.
+  
   const handleLike = () => {
     if (liked) {
       setLikes((prev) => prev - 1);
@@ -120,8 +117,8 @@ function VideoPage() {
     }
   };
 
-  // NEW: dislike handler — this didn't exist before, which is why the
-  // 👎 button did nothing when clicked.
+
+  
   const handleDislike = () => {
     if (disliked) {
       setDislikes((prev) => prev - 1);
@@ -155,7 +152,7 @@ function VideoPage() {
       setSubscribed(res.data.subscribed);
       setSubscriberCount(res.data.subscriberCount);
 
-      // NEW: fire a notification only when subscribing (not on unsubscribe)
+      
       if (res.data.subscribed) {
         const channelName = video.channel?.channelName || video.channel?.username;
         addNotification(`You subscribed to ${channelName}`);
@@ -270,9 +267,7 @@ function VideoPage() {
               </p>
             </div>
 
-            {/* FIXED: button now always renders. If there's no valid
-                channel reference on this video, it shows as a disabled
-                "Unavailable" button instead of disappearing completely. */}
+            
             <button
               className={`subscribe-btn ${subscribed ? "subscribed" : ""}`}
               onClick={handleSubscribeToggle}

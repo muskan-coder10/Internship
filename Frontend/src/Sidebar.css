@@ -6,11 +6,11 @@
   flex-shrink: 0;
   border-right: 1px solid var(--border);
   background-color: var(--sidebar-bg);
-  transition: width 0.2s ease, padding 0.2s ease;
+  transition: width 0.2s ease, padding 0.2s ease, transform 0.2s ease;
   white-space: nowrap;
 }
 
-/* NEW: collapsed state — width goes to 0, no leftover gap */
+/* Collapsed state on desktop/tablet — width goes to 0, no leftover gap */
 .sidebar.collapsed {
   width: 0;
   padding: 0;
@@ -63,8 +63,56 @@
   margin: 8px 12px;
 }
 
+/* ---------- Mobile: slide-in drawer instead of permanently hidden ----------
+   Previously this was `display: none` unconditionally, which meant the
+   hamburger button's toggle had zero visible effect on phones — the
+   sidebar stayed hidden no matter what state said.
+
+   Now on mobile the sidebar becomes an overlay drawer that sits on top
+   of the page (fixed position) instead of squishing the layout:
+   - collapsed = true  -> slid off-screen (hidden), same meaning as desktop
+   - collapsed = false -> slid into view (open)
+
+   IMPORTANT: this only works correctly if the sidebar starts collapsed
+   (true) by default on mobile screens — see the matching SidebarProvider
+   fix, otherwise every mobile visitor would see the drawer covering the
+   whole screen on page load. */
 @media (max-width: 900px) {
   .sidebar {
-    display: none;
+    position: fixed;
+    top: 56px; /* sits below the navbar */
+    left: 0;
+    height: calc(100% - 56px);
+    width: 260px;
+    max-width: 80vw;
+    padding: 8px 0;
+    overflow-y: auto;
+    border-right: 1px solid var(--border);
+    transform: translateX(-100%);
+    z-index: 150;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .sidebar:not(.collapsed) {
+    transform: translateX(0);
+  }
+}
+
+/* Dark backdrop behind the open mobile drawer, click to close.
+   Rendered by Sidebar.jsx only on mobile when open. */
+.sidebar-backdrop {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .sidebar-backdrop.visible {
+    display: block;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 56px);
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 140;
   }
 }
