@@ -12,6 +12,15 @@
   overflow-x: auto;
   margin-bottom: 20px;
   order: 1;
+  padding: 12px 25px;
+  position: sticky;
+  top: 0;
+  background: var(--content-bg, #fff);
+  z-index: 10;
+}
+
+.category-bar::-webkit-scrollbar {
+  display: none; /* hides scrollbar on Chrome/Safari, like the real app */
 }
 
 .category-btn {
@@ -44,8 +53,8 @@
 .video-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 30px ;
-  row-gap: 50px ;
+  column-gap: 30px;
+  row-gap: 50px;
   gap: 35px;
   padding: 0 25px 25px 25px;
   order: 3;
@@ -61,7 +70,7 @@
 
 .video-thumbnail {
   width: 100%;
-  height:auto ;
+  height: auto;
   aspect-ratio: 16/9;
   object-fit: cover;
   border-radius: 15px;
@@ -71,24 +80,60 @@
 
 .video-info {
   display: flex;
-  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
   margin-top: 10px;
 }
 
+/* Circular channel avatar next to the title, matching the real
+   YouTube app card layout instead of just plain stacked text. */
+.video-card-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--hover-bg, #e0e0e0);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text, #333);
+}
+
+.video-card-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-info-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* lets long titles truncate instead of overflowing */
+}
+
 .video-title {
-  font-size: 20px;
-  font-weight: 900;
+  font-size: 16px;
+  font-weight: 600;
   margin: 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .video-channel {
-  font-size: 14px;
+  font-size: 13px;
   color: #555;
   margin: 4px 0 2px 0;
 }
 
 .video-meta {
-  font-size: 13px;
+  font-size: 12px;
   color: #888;
   margin: 0;
 }
@@ -99,8 +144,29 @@
   }
 }
 
+/* Phones: single column, full-width thumbnails, tighter spacing —
+   this mirrors how the real YouTube app lays out its feed. */
 @media (max-width: 600px) {
+  .category-bar {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
   .video-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 0 20px 0; /* full-bleed thumbnails, no side padding, like the app */
+  }
+
+  .video-thumbnail {
+    border-radius: 0; /* full-bleed edge-to-edge look on mobile */
+  }
+
+  .video-info {
+    padding: 0 12px;
+  }
+
+  .video-title {
+    font-size: 15px;
   }
 }

@@ -44,11 +44,27 @@ function HomePage() {
           <Link to={`/video/${video._id}`} key={video._id} className="video-card">
             <img src={video.thumbnail} alt={video.title} className="video-thumbnail" />
             <div className="video-info">
-              <h3 className="video-title">{video.title}</h3>
-              <p className="video-channel">
-                {video.channel?.channelName || video.channel?.username}
-              </p>
-              <p className="video-meta">{video.views} views</p>
+              {/* Circular channel avatar, like the real YouTube app.
+                  Falls back to the first letter of the channel name
+                  when there's no avatar image. */}
+              <div className="video-card-avatar">
+                {video.channel?.avatar ? (
+                  <img src={video.channel.avatar} alt="" />
+                ) : (
+                  <span>
+                    {(video.channel?.channelName || video.channel?.username || "?")
+                      .charAt(0)
+                      .toUpperCase()}
+                  </span>
+                )}
+              </div>
+              <div className="video-info-text">
+                <h3 className="video-title">{video.title}</h3>
+                <p className="video-channel">
+                  {video.channel?.channelName || video.channel?.username}
+                </p>
+                <p className="video-meta">{video.views} views</p>
+              </div>
             </div>
           </Link>
         ))}

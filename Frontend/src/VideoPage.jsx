@@ -136,22 +136,12 @@ function VideoPage() {
     }
   };
 
-  // FIXED: real subscribe/unsubscribe — calls backend, updates count from
-  // the server's response (source of truth), not a local guess.
-  // Added a guard for video.channel being null/undefined so the
-  // subscribe click never silently crashes before the request is sent.
   const handleSubscribeToggle = async () => {
     if (!user) {
       alert("Please log in to subscribe.");
       return;
     }
 
-    // GUARD: some videos may have a broken/missing channel reference
-    // (e.g. the uploading account was deleted, or channel was never set).
-    // Without this check, video.channel._id below throws a silent
-    // ReferenceError/TypeError before any network request is made,
-    // which is what was causing "Failed to update subscription" with
-    // nothing showing up in the Network tab.
     if (!video.channel || !video.channel._id) {
       alert("Unable to subscribe — channel information is unavailable for this video.");
       return;
@@ -280,18 +270,20 @@ function VideoPage() {
               </p>
             </div>
 
-            {/* Only render the button if this video actually has a valid
-                channel reference — avoids showing a button that can
-                never succeed. */}
-            {video.channel?._id && (
-              <button
-                className={`subscribe-btn ${subscribed ? "subscribed" : ""}`}
-                onClick={handleSubscribeToggle}
-                disabled={subscribeLoading}
-              >
-                {subscribed ? "Subscribed" : "Subscribe"}
-              </button>
-            )}
+            {/* FIXED: button now always renders. If there's no valid
+                channel reference on this video, it shows as a disabled
+                "Unavailable" button instead of disappearing completely. */}
+            <button
+              className={`subscribe-btn ${subscribed ? "subscribed" : ""}`}
+              onClick={handleSubscribeToggle}
+              disabled={subscribeLoading || !video.channel?._id}
+            >
+              {!video.channel?._id
+                ? "Unavailable"
+                : subscribed
+                ? "Subscribed"
+                : "Subscribe"}
+            </button>
           </div>
 
           <div className="video-actions">
@@ -302,8 +294,6 @@ function VideoPage() {
               👍 {likes}
             </button>
 
-            {/* FIX: onClick + dislike count + active state added.
-                Previously this button had no handler at all. */}
             <button
               className={`action-btn ${disliked ? "disliked" : ""}`}
               onClick={handleDislike}
