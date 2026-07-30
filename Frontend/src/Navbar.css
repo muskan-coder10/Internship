@@ -60,7 +60,7 @@
   justify-content: center;
   max-width: 700px;
   margin: 0 24px;
-  min-width: 0; 
+  min-width: 0;
 }
 
 .search-input {
@@ -78,7 +78,7 @@
 .search-input-wrapper {
   position: relative;
   flex: 1;
-  min-width: 0; 
+  min-width: 0;
   display: flex;
 }
 
@@ -123,7 +123,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  flex-shrink: 0; 
+  flex-shrink: 0;
 }
 
 .search-btn:hover {
@@ -171,6 +171,9 @@
   border-radius: 50%;
   cursor: pointer;
   flex-shrink: 0;
+  background: none;
+  border: none;
+  color: var(--text);
 }
 
 .icon-wrapper:hover {
@@ -241,10 +244,18 @@
   color: var(--text);
   white-space: nowrap;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .logout-btn:hover {
   background: var(--border);
+}
+
+.logout-icon {
+  display: none; 
+  font-size: 18px;
 }
 
 /* ---------- Login link ---------- */
@@ -264,6 +275,16 @@
   border: 1px solid #065fd4;
   white-space: nowrap;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.pricing-link:hover {
+  background: #e8f0fe;
+}
+
+.pricing-icon-only {
+  display: none; 
 }
 
 .pricing-link:hover {
@@ -305,7 +326,7 @@
   top: 48px;
   right: 0;
   width: 280px;
-  max-width: 90vw; 
+  max-width: 90vw;
   max-height: 320px;
   overflow-y: auto;
   background: var(--navbar-bg);
@@ -331,6 +352,23 @@
   font-size: 13px;
   color: #888;
   text-align: center;
+}
+
+/* ---------- Mobile search trigger + full-width search row ----------*/
+.mobile-search-trigger {
+  display: none;
+}
+
+.navbar-center-mobile {
+  flex: 1;
+}
+
+.navbar-mobile-search {
+  gap: 8px;
+}
+
+.mobile-search-close {
+  flex-shrink: 0;
 }
 
 /* ---------- Responsive ---------- */
@@ -359,29 +397,45 @@
   }
 
   .youtube-logo {
+    display: none;
+  }
+
+  .navbar-center-desktop {
     display: none; 
   }
 
-  .navbar-center {
-    margin: 0 8px;
-  }
-
-  .search-input {
-    padding: 8px 12px;
-    font-size: 14px;
-  }
-
-  .search-btn {
-    padding: 8px 14px;
+  .mobile-search-trigger {
+    display: flex; 
   }
 
   .navbar-username {
+    display: none;
+  }
+
+  .logout-btn {
+    padding: 8px;
+    border-radius: 50%;
+  }
+
+  .logout-text {
     display: none; 
   }
 
+  .logout-icon {
+    display: block;
+  }
+
+  .pricing-text {
+    display: none;
+  }
+
+  .pricing-icon-only {
+    display: block;
+  }
+
   .pricing-link {
-    padding: 6px 8px;
-    font-size: 12px;
+    padding: 8px;
+    border-radius: 50%;
   }
 
   .theme-toggle-btn,
@@ -391,13 +445,9 @@
   }
 }
 
-/* Very small phones */
+
 @media (max-width: 380px) {
   .create-btn {
-    display: none; 
-  }
-
-  .pricing-link span {
     display: none;
   }
 }
